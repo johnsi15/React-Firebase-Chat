@@ -63,7 +63,7 @@ class App extends React.Component {
   }
 
   handleSendMessage (text) {
-    const messages = firebase.database().ref().child('messages');
+    const message = firebase.database().ref().child('messages');
 
     let newUserMessage = message.push();
     let msg = {
@@ -77,8 +77,8 @@ class App extends React.Component {
 
   renderMessages () {
     if (this.state.user) {
-      return this.state.messages.map(msg => {
-        <ChatMessage message={msg} />
+      return this.state.messages.map((msg, index) => {
+        return <ChatMessage key={index} message={msg} />
       }).reverse()
     }
   }
