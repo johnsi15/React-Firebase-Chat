@@ -51517,7 +51517,7 @@ var App = function (_React$Component) {
   }, {
     key: 'handleSendMessage',
     value: function handleSendMessage(text) {
-      var messages = _firebase2.default.database().ref().child('messages');
+      var message = _firebase2.default.database().ref().child('messages');
 
       var newUserMessage = message.push();
       var msg = {
@@ -51531,8 +51531,8 @@ var App = function (_React$Component) {
     key: 'renderMessages',
     value: function renderMessages() {
       if (this.state.user) {
-        return this.state.messages.map(function (msg) {
-          _react2.default.createElement(_ChatMessage2.default, { message: msg });
+        return this.state.messages.map(function (msg, index) {
+          return _react2.default.createElement(_ChatMessage2.default, { key: index, message: msg });
         }).reverse();
       }
     }
